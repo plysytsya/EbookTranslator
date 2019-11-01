@@ -13,7 +13,7 @@ from translator import Translator, GoogleEngine
 
 
 def get_mock_text():
-    with open(os.path.join(THIS_DIR, "test_data", "zen_of_python.txt")) as file:
+    with open(os.path.join(THIS_DIR, "test_data", "zen_en.txt")) as file:
         return file.read()
 
 
@@ -48,7 +48,6 @@ class GoogleEngineTest(unittest.TestCase):
         text = get_mock_text()
         translation = self.engine.translate(text)
         self.assertIsInstance(translation, str)
-        print(translation)
 
 
 if __name__ == '__main__':
