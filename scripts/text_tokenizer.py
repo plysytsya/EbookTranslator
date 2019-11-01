@@ -1,3 +1,4 @@
+from nltk.tokenize import sent_tokenize
 
 
 class TextTokenizer:
@@ -5,10 +6,9 @@ class TextTokenizer:
 
     def __init__(self, text_as_string):
         self.text = text_as_string
-        self.separators = ['...', '.', '!' '?', ';']
 
     def tokenize(self):
-        pass
+        return sent_tokenize(self.text)
 
 
 if __name__ == '__main__':

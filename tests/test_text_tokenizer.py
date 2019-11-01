@@ -18,7 +18,8 @@ class TextTokenizerTest(unittest.TestCase):
             self.tokenizer = TextTokenizer(file.read())
 
     def test_1_tokenize(self):
-        self.tokenizer.tokenize()
+        sentences = self.tokenizer.tokenize()
+        self.assertTrue(isinstance(sentences, list))
 
 
 if __name__ == '__main__':
