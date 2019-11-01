@@ -1,1 +1,2 @@
 nltk~=3.4.5
+googletrans~=2.4.0
