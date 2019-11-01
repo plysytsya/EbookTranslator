@@ -13,7 +13,7 @@ from text_tokenizer import TextTokenizer
 class TextTokenizerTest(unittest.TestCase):
 
     def setUp(self):
-        path_mock_text = os.path.join(THIS_DIR, "testdata", "lorem_ipsum.txt")
+        path_mock_text = os.path.join(THIS_DIR, "test_data", "lorem_ipsum.txt")
         with open(path_mock_text) as file:
             self.tokenizer = TextTokenizer(file.read())
 
