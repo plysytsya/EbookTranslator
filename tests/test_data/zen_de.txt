@@ -1,0 +1,19 @@
+Schön ist besser als hässlich.
+Ausdrücklich ist besser als indirekt.
+Einfach ist besser als komplex.
+Komplex ist besser als kompliziert.
+Direkt ist besser als verschachtelt.
+Licht ist besser als dicht.
+Lesbarkeit zählt.
+Spezialfälle sind nie speziell genug, um die Regeln zu brechen.
+Dennoch geht Machbarkeit vor Regeltreue.
+Fehlermeldungen sollten nicht stillschweigend übergangen werden.
+Außer sie werden ausdrücklich ausgeblendet.
+Im Falle von Uneindeutigkeit widerstehe der Versuchung zu raten.
+Es sollte einen – und vorzüglich NUR einen – offensichtlichen Weg der Lösung geben.
+Obwohl dieser vielleicht nicht sofort offensichtlich ist, es sei denn Du bist Niederländer.
+Jetzt ist besser als nie.
+Obwohl nie bisweilen besser ist als gerade jetzt.
+Ist die Implementierung schwer zu erklären, ist's keine gute Idee.
+Ist die Implementierung leicht zu erklären, könnte es eine gute Idee sein.
+Namensräume sind eine sau gute Idee – lasst uns mehr davon machen
