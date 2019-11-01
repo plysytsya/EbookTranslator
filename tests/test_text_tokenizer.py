@@ -1,7 +1,6 @@
 import os
 import sys
 import unittest
-import warnings
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(THIS_DIR)
