@@ -1,5 +1,5 @@
 /ebooks
-/scripts/webdrivers/*
+#/scripts/webdrivers/*
 !/scripts/webdrivers/readme.txt
 
 # Byte-compiled / optimized / DLL files
