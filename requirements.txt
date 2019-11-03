@@ -1,2 +1,6 @@
 nltk~=3.4.5
 googletrans~=2.4.0
+hypothesis~=4.39.0
+selenium~=3.141.0
+tqdm~=4.37.0
+

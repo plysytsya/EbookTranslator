@@ -3,7 +3,6 @@ import sys
 import unittest
 import warnings
 
-
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(THIS_DIR)
 SCRIPTS_DIR = os.path.join(ROOT_DIR, 'scripts')
@@ -13,7 +12,8 @@ from translator import Translator, GoogleEngine
 
 
 def get_mock_text():
-    with open(os.path.join(THIS_DIR, "test_data", "zen_en.txt")) as file:
+    path = os.path.join(THIS_DIR, "test_data", "zen_en.txt")
+    with open(path) as file:
         return file.read()
 
 
@@ -21,16 +21,19 @@ class TranslatorTest(unittest.TestCase):
 
     def setUp(self):
         warnings.filterwarnings("ignore", category=ResourceWarning, message="unclosed.*<ssl.SSLSocket.*>")
-        self.translator = Translator(source_language="en", target_language="de")
+        self.translator = Translator(source_language="en", target_language="de", engine="Google")
 
     def test_1_set_engine(self):
-        self.translator.set_engine("google")
+        self.translator.set_engine("Google")
         self.assertTrue(self.translator.engine)
 
     def test_2_translate(self):
         text = get_mock_text()
         translation = self.translator.translate(text)
         self.assertTrue(isinstance(translation, str))
+
+    def test_3_quit(self):
+        self.translator.quit()
 
 
 class GoogleEngineTest(unittest.TestCase):
