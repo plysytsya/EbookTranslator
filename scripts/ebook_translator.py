@@ -57,6 +57,8 @@ class EbookTranslator:
 
 
 if __name__ == '__main__':
-    path = "/Users/pavlo.lysytsya/Projects/EbookTranslator/ebooks/harry_potter1_es.txt"
+    THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+    ROOT_DIR = os.path.dirname(THIS_DIR)
+    path = os.path.join(ROOT_DIR, "ebooks/harry_potter1_es.txt")
     ebook_translator = EbookTranslator(path, "es", "de", engine="DeepL")
     ebook_translator.translate()

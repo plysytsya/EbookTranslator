@@ -117,7 +117,7 @@ class DeepLEngine:
         self.wait_for_translation(text)
         return self.read_output()
 
-    def wait_for_translation(self, original, timeout=60, seconds=1):
+    def wait_for_translation(self, original, timeout=60, seconds=3):
         start = datetime.datetime.now()
         timeout = datetime.timedelta(seconds=timeout)
         self.wait_until_equal_number_of_words(original, self.read_output())
