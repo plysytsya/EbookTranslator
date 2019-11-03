@@ -39,7 +39,7 @@ class EbookTranslator:
 
     def write_to_file(self, text, path, mode="a"):
         with open(path, mode) as file:
-            file.write(text + ' ')
+            file.write(text)
 
     def read_counter(self):
         with open(self.counter_path) as file:
