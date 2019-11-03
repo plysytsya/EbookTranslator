@@ -1,11 +1,27 @@
 import platform
 import datetime
 import os
+import subprocess
+import signal
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.common.action_chains import ActionChains
+
+
+def kill_process_by_keyword(keyword):
+    p = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE)
+    out, err = p.communicate()
+    for line in out.splitlines():
+        print(line)
+        if keyword in str(line).lower():
+            pid = int(line.split(None, 1)[0])
+            try:
+                os.kill(pid, signal.SIGKILL)
+            except OSError:
+                pass
 
 
 class Browser:
@@ -117,3 +133,7 @@ class Browser:
     def double_click(self, element):
         actionChains = ActionChains(element)
         actionChains.double_click(element).perform()
+
+
+if __name__ == '__main__':
+    kill_process_by_keyword("chrome")
