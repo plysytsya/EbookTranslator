@@ -19,7 +19,8 @@ class EbookTranslator:
     def translate(self):
         for counter, original_sentence in enumerate(tqdm(self.ebook.sentences)):
             translated_sentence = self.translator.translate(original_sentence)
-            self.write_to_file(translated_sentence, self.out_path)
+            both_sentences = f"{translated_sentence}\n\n{original_sentence}\n\n"
+            self.write_to_file(both_sentences, self.out_path)
             self.write_to_file(str(counter), self.counter_path, mode="w")
         self.quit()
 
