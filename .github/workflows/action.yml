@@ -1,11 +1,19 @@
-name: my workflow
-on: push
+name: testing-actions
+
+on: [push]
+
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@master
-      - name: Check container
-        uses: docker://alpine:3.8
-        with:
-          args: /bin/sh -c "docker images"
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install docker
+      run: |
+        sudo apt install docker.io
+        sudo systemctl start docker
