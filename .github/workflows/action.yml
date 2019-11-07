@@ -20,6 +20,6 @@ jobs:
     runs:
       using: 'docker'
       image: 'Dockerfile'
-      steps:
-        echo hello, world!
+    steps:
+      echo hello, world!
       
