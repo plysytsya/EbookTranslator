@@ -10,5 +10,5 @@ jobs:
     - uses: actions/checkout@v1
     - run: docker build -t quay.io/plysytsya/ebook-translator:0.2 .
     - run: |
-        docker login quay.io --username plysytsya --password "${GITHUB_PACKAGE_REGISTRY_TOKEN}"
+        docker login quay.io --username  "${{ secrets.DOCKER_USERNAME }}" --password "${{ secrets.DOCKER_PASSWORD }}"
         docker push quay.io/plysytsya/ebook-translator:0.2
