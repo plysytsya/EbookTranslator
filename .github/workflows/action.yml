@@ -8,5 +8,7 @@ jobs:
     steps:
     # Checkout into the repository and build a docker image from Dockerfile
     - uses: actions/checkout@v1
-    - run: docker build -t test:0.1 .
-    - run: docker images
+    - run: docker build -t quay.io/plysytsya/ebook-translator:0.2 .
+    - run: |
+        docker login quay.io --username plysytsya --password "${GITHUB_PACKAGE_REGISTRY_TOKEN}"
+        docker push quay.io/plysytsya/ebook-translator:0.2
