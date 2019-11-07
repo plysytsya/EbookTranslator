@@ -8,4 +8,4 @@ jobs:
       - name: Check container
         uses: docker://alpine:3.8
         with:
-          args: /bin/sh -c "cat /etc/alpine-release"
+          args: /bin/sh -c "docker images"
