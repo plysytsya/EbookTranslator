@@ -22,3 +22,4 @@ jobs:
       using: 'docker'
       image: 'Dockerfile'
       run: |
+        echo hello
