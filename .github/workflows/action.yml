@@ -13,5 +13,5 @@ jobs:
       run: touch $HOME/stuff.txt
     # Those steps are actions, which may run inside a container
     - uses: actions/checkout@v1
-    - uses: docker://continuumio/anaconda3:2019.07
+    - uses: docker://docker
     - run: docker images
