@@ -1,26 +1,25 @@
-# action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
-inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
-
+name: ps-data-cross-engage-scripts
 
 on: [push]
 
 jobs:
-  hello_world_job:
+  build:
+
     runs-on: ubuntu-latest
-    name: A job to say hello
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: A job to say hello
     runs:
       using: 'docker'
       image: 'Dockerfile'
-    steps:
       run: |
-        echo hello, world!
-      
+        echo hello!
