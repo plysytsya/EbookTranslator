@@ -15,5 +15,5 @@ jobs:
         python-version: 3.7
     - name: Install docker
       run: |
-        sudo apt install docker.io
-        sudo systemctl start docker
+        apt install docker.io
+        systemctl start docker
