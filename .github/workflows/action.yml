@@ -1,19 +1,17 @@
-name: testing-actions
+name: CI
 
 on: [push]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+  myjob:
+    runs-on: ubuntu-18.04 # linux required if you want to use docker
     steps:
+    # Those steps are executed directly on the VM
+    - run: ls /
+    - run: echo $HOME
+    - name: Add a file
+      run: touch $HOME/stuff.txt
+    # Those steps are actions, which may run inside a container
     - uses: actions/checkout@v1
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.7
-    - name: Install docker
-      run: |
-        apt install docker.io
-        systemctl start docker
+    - uses: ./.github/actions/my-action
+    - uses: docker://continuumio/anaconda3:2019.07
