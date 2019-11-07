@@ -6,8 +6,7 @@ jobs:
   myjob:
     runs-on: ubuntu-18.04 # linux required if you want to use docker
     steps:
-    - name: Build a docker image
-      run: touch $HOME/stuff.txt
+    # Checkout into the repository and build a docker image from Dockerfile
     - uses: actions/checkout@v1
     - run: docker build -t test:0.1 .
     - run: docker images
