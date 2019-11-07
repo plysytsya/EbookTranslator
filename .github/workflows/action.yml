@@ -9,8 +9,9 @@ jobs:
     # Checkout into the repository and build a docker image from Dockerfile
     - uses: actions/checkout@v1
     - run: git for-each-ref refs/tags --sort=-taggerdate --format='%(refname:short)' --count=1
-    - run: RELEASE_VERSION="$(git for-each-ref refs/tags --sort=-taggerdate --format='%(refname:short)' --count=1 2>&1)"
-    - run: echo ${RELEASE_VERSION}
+    - run: |
+        RELEASE_VERSION="$(git for-each-ref refs/tags --sort=-taggerdate --format='%(refname:short)' --count=1 2>&1)"
+        echo ${RELEASE_VERSION}
 
     #- run: docker build -t quay.io/plysytsya/ebook-translator:0.2 .
     #- run: |
