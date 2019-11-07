@@ -14,4 +14,5 @@ jobs:
     # Those steps are actions, which may run inside a container
     - uses: actions/checkout@v1
     - uses: docker://docker
+    - run: docker build -t test:0.1 .
     - run: docker images
