@@ -12,6 +12,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 
 def kill_process_by_keyword(keyword):
+    """
+        Use it to kill stuck webdrivers.
+        E.g. kill_process_by_keyword(chrome)
+    """
     p = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE)
     out, err = p.communicate()
     for line in out.splitlines():
@@ -136,4 +140,4 @@ class Browser:
 
 
 if __name__ == '__main__':
-    kill_process_by_keyword("chrome")
+    browser = Browser()
