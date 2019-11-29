@@ -1,15 +1,26 @@
-name: CI
+name: runtests
 
 on: [push]
 
 jobs:
-  myjob:
-    runs-on: ubuntu-18.04 # linux required if you want to use docker
+  build:
+
+    runs-on: ubuntu-latest
+
     steps:
-    # Checkout into the repository and build a docker image from Dockerfile
     - uses: actions/checkout@v1
-    - run: echo "Tags are > ${TAG1}"
-    - run: docker build -t quay.io/plysytsya/ebook-translator:0.2 .
-    - run: |
-        docker login quay.io --username  "${{ secrets.DOCKER_USERNAME }}" --password "${{ secrets.DOCKER_PASSWORD }}"
-        docker push quay.io/plysytsya/ebook-translator:0.2
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Install google-chrome
+      run: |
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb
+    - name: Test with built in unittests
+      run: |
+        python -m unittest discover ./tests
