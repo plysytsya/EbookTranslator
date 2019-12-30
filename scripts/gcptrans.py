@@ -1,7 +1,7 @@
 # Imports the Google Cloud client library
 import os
 import time
-from google.cloud import translate
+from google.cloud import translate_v2 as translate
 from retrying import retry
 
 """
