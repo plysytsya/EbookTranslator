@@ -27,11 +27,15 @@ enumerated_sentences = [{"index": index, "sentence": sentence} for index, senten
 
 
 def translate(sen_dict):
+    global total
     translated = translator.translate(sen_dict["sentence"])
+    print(round(sen_dict["index"] / total * 100, 2), r"%")
     return {"index": sen_dict["index"], "original": sen_dict["sentence"], "translated": translated}
 
 
 pool = ThreadPool(20)
+global total
+total = len(text)
 results = pool.map(translate, enumerated_sentences)
 
 df = pd.DataFrame(results)
