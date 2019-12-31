@@ -6,27 +6,39 @@ import argparse
 import csv
 import argparse
 import pandas as pd
+from multiprocessing.dummy import Pool as ThreadPool
 
 parser = argparse.ArgumentParser(
-	description='Missing arguments --input <path>.txt --output <path>.html --lang <locale>')
+    description='Missing arguments --input <path>.txt --output <path>.html --lang <locale>')
 parser.add_argument('--input', metavar='N', type=str, nargs='+',
                     help='path to infile txt')
-parser.add_argument('--output', metavar='N', type=str, nargs='+',
-                    help='path outfile html')
 parser.add_argument('--lang', metavar='N', type=str, nargs='+',
                     help='path outfile html')
 
 args = parser.parse_args()
 
-assert args.input and args.output and args.lang, parser.description
+
+assert args.input and args.lang, parser.description
 
 path = args.input[0]
 text = Ebook(path).sentences
 translator = Translator(args.lang[0])
-with open(path.replace(".txt", ".csv"), "w") as f:
-	writer = csv.writer(f)
-	for i, es in enumerate(text):
-		writer.writerow([es, str(translator.translate(es))])
-		print(round(i/len(text) * 100, 2), r"%")
-df = pd.read_csv(path.replace(".txt", ".csv"))
-df.to_html(args.output[0], index=False, border=0, header=False)
+enumerated_sentences = [{"index": index, "sentence": sentence} for index, sentence in enumerate(text)]
+
+
+def translate(sen_dict):
+    translated = translator.translate(sen_dict["sentence"])
+    return {"index": sen_dict["index"], "original": sen_dict["sentence"], "translated": translated}
+
+
+pool = ThreadPool(20)
+results = pool.map(translate, enumerated_sentences)
+
+df = pd.DataFrame(results)
+del df["index"]
+df.to_csv(path.replace(".txt", ".csv"), index=False)
+df = df.replace('\n', '<br>', regex=True)
+df.to_html(path.replace(".txt", ".html"), index=False, border=0, header=False, escape=False)
+
+pool.close()
+pool.join()

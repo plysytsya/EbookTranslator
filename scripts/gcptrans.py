@@ -16,7 +16,7 @@ class Translator():
 
 	@retry(stop_max_attempt_number=7)
 	def translate(self, text):
-		translation = self.client.translate(text, target_language=self.target)
+		translation = self.client.translate(text, target_language=self.target, format_="text")
 		return self.format(translation['translatedText'])
 
 	def format(self, translated_text):
