@@ -23,14 +23,14 @@ assert args.input and args.lang, parser.description
 path = args.input[0]
 text = Ebook(path).sentences
 translator = Translator(args.lang[0])
-enumerated_sentences = [{"index": index, "sentence": sentence} for index, sentence in enumerate(text)]
+enumerated_sentences = [{"position": position, "sentence": sentence} for position, sentence in enumerate(text)]
 
 
 def translate(sen_dict):
     global total
     translated = translator.translate(sen_dict["sentence"])
-    print(round(sen_dict["index"] / total * 100, 2), r"%")
-    return {"index": sen_dict["index"], "original": sen_dict["sentence"], "translated": translated}
+    print(round(sen_dict["position"] / total * 100, 2), r"%")
+    return {"position": sen_dict["position"], "original": sen_dict["sentence"], "translated": translated}
 
 
 pool = ThreadPool(20)
@@ -39,7 +39,8 @@ total = len(text)
 results = pool.map(translate, enumerated_sentences)
 
 df = pd.DataFrame(results)
-del df["index"]
+df = df.sort_values(by="position")
+del df["position"]
 df.to_csv(path.replace(".txt", ".csv"), index=False)
 df = df.replace('\n', '<br>', regex=True)
 df.to_html(path.replace(".txt", ".html"), index=False, border=0, header=False, escape=False)
